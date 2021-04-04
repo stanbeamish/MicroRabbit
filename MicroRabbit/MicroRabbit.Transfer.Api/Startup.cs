@@ -33,6 +33,13 @@ namespace MicroRabbit.Transfer.Api
                 options.UseSqlServer(Configuration.GetConnectionString("TransferDbConnection"));
             });
 
+            services.AddCors(options => {
+                options.AddPolicy("Open", builder =>
+                {
+                    builder.AllowAnyOrigin().AllowAnyHeader();
+                });
+            });
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -58,14 +65,15 @@ namespace MicroRabbit.Transfer.Api
                 
             }
 
+            
             app.UseHttpsRedirection();
 
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MicroRabbit.Transfer.Api v1"));
 
             app.UseRouting();
-
-            app.UseAuthorization();
+            app.UseCors("Open");
+            app.UseAuthorization();            
 
             app.UseEndpoints(endpoints =>
             {

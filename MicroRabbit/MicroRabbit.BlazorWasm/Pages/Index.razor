@@ -1,0 +1,43 @@
+﻿@page "/"
+@inject MicroRabbit.BlazorWasm.Services.ITransferLogService TransferLogService
+
+
+<h2>Blazor WASM App</h2>
+<p>Shows all messages from RabbitMQ</p>
+
+<h3>TransferLog List</h3>
+<div class="card-deck">
+    @foreach (var transferLog in TransferLogService.TransferLogs)
+            {
+    <div class="card-set">        
+        <div class="card-deck" style="padding: 0.5rem;">
+            <div class="card" style="width: 18rem;">
+                <div class="card-header" style="background-color: blueviolet; color: white;">
+                    Transfer Log Entry
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">ID: @transferLog.Id</h5>
+                    <div class="card-text">
+                        <p>From Account: @transferLog.FromAccount</p>
+                        <p>To Account: @transferLog.ToAccount</p>
+                        <p>Amount: @transferLog.TransferAmount</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+                
+            }
+</div>
+
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        await TransferLogService.GetTransferLogs();
+        
+    }
+    
+}
