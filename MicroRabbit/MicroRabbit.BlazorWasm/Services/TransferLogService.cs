@@ -20,7 +20,7 @@ namespace MicroRabbit.BlazorWasm.Services
 
         public async Task<IList<TransferLog>> GetTransferLogs()
         {
-            TransferLogs = await _httpClient.GetJsonAsync<TransferLog[]>("https://localhost:5003/api/Transfer");            
+            TransferLogs = await _httpClient.GetJsonAsync<TransferLog[]>("https://localhost:5003/api/Transfer");
             return TransferLogs;
         }        
     }

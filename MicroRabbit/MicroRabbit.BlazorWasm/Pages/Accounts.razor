@@ -1,0 +1,36 @@
+﻿@page "/accounts"
+@inject MicroRabbit.BlazorWasm.Services.IBankAccountsService BankAccountsService
+
+<h3>Bank Accounts</h3>
+
+<div class="card-set">
+    <div class="card-deck">
+        @foreach (var account in BankAccountsService.BankAccounts)
+        {
+        <div class="card">
+            <div class="card-header" style=@(
+                    account.AccountType == "Checking" 
+                    ? "background-color: #880000; color: white;" 
+                    : "background-color: green; color: white;"
+                    )>
+                @account.ID                
+            </div>
+            <div class="card-body">
+                <div class="card-text">
+                    <p>Type: @account.AccountType</p>
+                    <p>Balance: @account.AccountBalance</p>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await BankAccountsService.GetBankAccounts();
+    }
+
+    
+}
