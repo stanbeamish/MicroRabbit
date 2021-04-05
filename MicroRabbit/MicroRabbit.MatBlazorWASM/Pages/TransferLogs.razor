@@ -4,7 +4,7 @@
 <div class="container">
     <h3>TransferLogs</h3>
 
-    <MatTable Items="@transfers" Class="mat-elevation-z5" ShowPaging="false" UseSortHeaderRow="true">
+    <MatTable Striped="true" Items="@transfers" Class="mat-elevation-z5" UseSortHeaderRow="true">
         <MatTableHeader>
             <MatSortHeaderRow>
                 <MatSortHeader SortId="id">ID</MatSortHeader>
@@ -27,11 +27,49 @@
 
 @code {
 
-    IList<MicroRabbit.MatBlazorWASM.Models.TransferLog> transfers = new List<MicroRabbit.MatBlazorWASM.Models.TransferLog>();
+    MicroRabbit.MatBlazorWASM.Models.TransferLog[] transfers = null;
 
     protected override async Task OnInitializedAsync()
     {
         await TransferLogService.GetTransferLogs();
-        transfers = TransferLogService.TransferLogs;
+        transfers = (TransferLogService.TransferLogs).ToArray();
+    }
+
+    void SortData(MatSortChangedEvent sort)
+    {
+
+        transfers = transfers.ToArray();
+
+        if (!(sort == null || sort.Direction == MatSortDirection.None || string.IsNullOrEmpty(sort.SortId)))
+        {
+            Comparison<MicroRabbit.MatBlazorWASM.Models.TransferLog> comparison = null;
+            switch (sort.SortId)
+            {
+                case "id":
+                    comparison = (s1, s2) => s1.Id.CompareTo(s2.Id);
+                    break;
+                case "from":
+                    comparison = (s1, s2) => s1.FromAccount.CompareTo(s2.FromAccount);
+                    break;
+                case "to":
+                    comparison = (s1, s2) => s1.ToAccount.CompareTo(s2.ToAccount);
+                    break;
+                case "amount":
+                    comparison = (s1, s2) => s1.TransferAmount.CompareTo(s2.TransferAmount);
+                    break;
+            }
+
+            if (comparison != null)
+            {
+                if (sort.Direction == MatSortDirection.Desc)
+                {
+                    Array.Sort(transfers, (s1, s2) => -1 * comparison(s1, s2));
+                }
+                else
+                {
+                    Array.Sort(transfers, comparison);
+                }
+            }
+        }
     }
 }
