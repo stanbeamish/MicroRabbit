@@ -12,6 +12,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra.IoC", "Infra.IoC", "{607D64B1-3CC9-4545-802E-523CF6B0AFB5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{9D0DFD5D-85F2-44EF-ABCE-BECB0535BAAD}"
+	ProjectSection(SolutionItems) = preProject
+		documentation.md = documentation.md
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroRabbit.Domain.Core", "MicroRabbit.Domain.Core\MicroRabbit.Domain.Core.csproj", "{5E58924A-9D79-4AB0-9C5C-87AECF65942E}"
 EndProject
@@ -61,11 +64,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroRabbit.MVC", "MicroRab
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BlazorWASM", "BlazorWASM", "{92CDEDE6-F859-401B-91BC-2494B9C8EA8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroRabbit.BlazorWasm", "MicroRabbit.BlazorWasm\MicroRabbit.BlazorWasm.csproj", "{8A472C71-31D7-476C-876E-18F017593767}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroRabbit.BlazorWasm", "MicroRabbit.BlazorWasm\MicroRabbit.BlazorWasm.csproj", "{8A472C71-31D7-476C-876E-18F017593767}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MatBlazorWASM", "MatBlazorWASM", "{8E7B8E90-2810-482D-A4BA-4790C99B4126}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroRabbit.MatBlazorWASM", "MicroRabbit.MatBlazorWASM\MicroRabbit.MatBlazorWASM.csproj", "{BFF50F60-AC04-4C44-97CD-B6930D55FDA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroRabbit.MatBlazorWASM", "MicroRabbit.MatBlazorWASM\MicroRabbit.MatBlazorWASM.csproj", "{BFF50F60-AC04-4C44-97CD-B6930D55FDA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
