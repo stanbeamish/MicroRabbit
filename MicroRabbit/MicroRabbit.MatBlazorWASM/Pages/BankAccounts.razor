@@ -1,0 +1,46 @@
+﻿@page "/bankaccounts"
+@inject MicroRabbit.MatBlazorWASM.Services.IBankAccountsService BankAccountsService
+
+<div class="container">
+    <h3>BankAccounts</h3>
+
+    @foreach(var account in BankAccountsService.BankAccounts)
+    {
+        <MatCard Class="demo-mat-card">
+            <div class="demo-mat-card-content">
+                <MatHeadline6 Class="demo-mat-card-clean-margin">
+                    Account ID: @account.ID
+                </MatHeadline6>
+                <MatSubtitle2 Class="demo-mat-card-clean-margin">
+                    from RabbitMQ / MSSQLServer
+                </MatSubtitle2>
+            </div>
+            <MatCardContent>
+                <MatBody2>
+                    <MatList>
+                        <MatListItem>
+                            <MatListItemText>
+                                Type: @account.AccountType
+                            </MatListItemText>
+                        </MatListItem>
+                        <MatListItem>
+                            <MatListItemText>
+                                Balance: @account.AccountBalance
+                            </MatListItemText>
+                        </MatListItem>
+                    </MatList>
+                </MatBody2>
+            </MatCardContent>
+                    
+        </MatCard>
+    }
+
+</div>
+
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await BankAccountsService.GetBankAccounts();
+    }
+}

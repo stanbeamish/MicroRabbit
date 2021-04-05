@@ -1,0 +1,37 @@
+﻿
+    <MatAppBar Fixed="true" Style="background-color: #8A0808">
+        <MatAppBarRow>
+            <MatAppBarSection>
+                <MatIconButton Icon="menu" OnClick="(e) => ButtonClicked()"></MatIconButton>
+                <MatAppBarTitle>MicroRabbit - MatBlazorWASM</MatAppBarTitle>
+            </MatAppBarSection>
+            <MatAppBarSection Align="@MatAppBarSectionAlign.End">
+                <MatIconButton Icon="favorite" Link="/"></MatIconButton>
+            </MatAppBarSection>
+        </MatAppBarRow>
+    </MatAppBar>
+
+    <MatDrawerContainer Style="width: 100vw; height: 10vw">
+        <MatDrawer @bind-Opened="@Opened" Style=" background-color: #610B0B; color: white;" Mode="@MatDrawerMode.Modal">
+            
+            <MatNavMenu @onclick="(e) => ButtonClicked()">
+                <MatNavItem Style="color: white;" Href="/"><MatIcon Icon="home"></MatIcon>&nbsp; Home </MatNavItem>
+                <MatDivider></MatDivider>
+                <MatNavItem Style="color: white;" Href="/bankaccounts"><MatIcon Icon="timeline"></MatIcon>&nbsp; Bank Accounts </MatNavItem>                
+                <MatNavItem Style="color: white;" Href="/transferlogs"><MatIcon Icon="swap_vertical_circle"></MatIcon>&nbsp; Transfer Logs </MatNavItem>
+            </MatNavMenu>
+        </MatDrawer>        
+        <MatDrawerContent>            
+        </MatDrawerContent>
+    </MatDrawerContainer>
+
+
+
+@code {
+    bool Opened = true;
+
+    void ButtonClicked()
+    {
+        Opened = !Opened;
+    }
+}

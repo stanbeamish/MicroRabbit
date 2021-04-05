@@ -28,6 +28,13 @@ namespace MicroRabbit.Banking.Api
                 options.UseSqlServer(Configuration.GetConnectionString("BankingDbConnection"));
             });
 
+            services.AddCors(options => {
+                options.AddPolicy("Open", builder =>
+                {
+                    builder.AllowAnyOrigin().AllowAnyHeader();
+                });
+            });
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -58,7 +65,7 @@ namespace MicroRabbit.Banking.Api
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MicroRabbit.Banking.Api v1"));
 
             app.UseRouting();
-
+            app.UseCors("Open");
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
